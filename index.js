@@ -1,5 +1,6 @@
 var loginAttemps = 3;
 var restartAttemps = 4;
+var SENT = new Array();
 
 require.extensions['.txt'] = function (module, filename) {
   module.exports = fs.readFileSync(filename, 'utf8');
@@ -127,6 +128,7 @@ function doLogin() {
 }
 
 function execMainStuff() {
+  if (SENT.length >= 100) SENT = new Array();
 
   restartAttemps--;
   if (restartAttemps <= 0) {
@@ -135,22 +137,27 @@ function execMainStuff() {
 
   const unsubscribe = firestore.collection('feedbacks').where('notified', '==', false)
     .onSnapshot(querySnapshot => {
+
       var numOfValues = querySnapshot.size;
       if (!querySnapshot.empty) unsubscribe();
       querySnapshot.forEach(function (doc) {
         const data = doc.data();
 
-        params.Message.Subject.Data = 'We\'ve got a new feedback!';
-        params.Message.Body.Html.Data = Mustache.render(HTML_TEMPLATE, data);
-        params.Message.Body.Text.Data = Mustache.render(TEXT_TEMPLATE, data);
+        if ( SENT[doc.id] !== true ) {
+          SENT[doc.id] = true;
 
-        new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise()
-        .then(function(email_response) {
-          console.log("Cool, everythig is alright");
-        })
-        .catch(function(error) {
-          sentErrorMessage(`There was an error sending the email for feedback ${doc.id}`, error);
-        });
+          params.Message.Subject.Data = 'We\'ve got a new feedback!';
+          params.Message.Body.Html.Data = Mustache.render(HTML_TEMPLATE, data);
+          params.Message.Body.Text.Data = Mustache.render(TEXT_TEMPLATE, data);
+
+          new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise()
+          .then(function(email_response) {
+            console.log("Cool, everythig is alright");
+          })
+          .catch(function(error) {
+            sentErrorMessage(`There was an error sending the email for feedback ${doc.id}`, error);
+          });
+        }
 
         firestore.collection('feedbacks').doc(doc.id).set({
           notified: true
