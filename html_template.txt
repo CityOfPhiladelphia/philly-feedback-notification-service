@@ -1,6 +1,6 @@
-<h1>There is a new feedback for the app: {{ pageTitle }}</h1>
+<h2>There is a new feedback for the app: {{ pageTitle }}</h2>
 <br>
-<h2>Details:</h2>
+<h3>Details:</h3>
 <h4>Date Time:</h4>
 <p>{{ datetime }}</p>
 <h4>Name:</h4>
@@ -16,7 +16,7 @@
 <h4>Image:</h4>
 <p><img src="{{ image }}" /></p>
 <br>
-<h2>Meta data:</h2>
+<h3>Meta data:</h3>
 {{#metadata}}
     <h4>{{ name }}</h4>
     <p>{{ value }}</p>
