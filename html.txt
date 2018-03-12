@@ -1,0 +1,25 @@
+<h3>There is a new feedback for the app: {{ pageTitle }}</h3>
+
+<h4>Details:</h4>
+<dl>
+    <dt><b>Name:</b></dt>
+    <dd>{{ name }}</dd>
+    <dt><b>Email:</b></dt>
+    <dd>{{ email }}</dd>
+    <dt><b>Feedback:</b></dt>
+    <dd>{{ feedback }}</dd>
+    <dt><b>URL:</b></dt>
+    <dd>{{ href }}</dd>
+    <dt><b>Domain:</b></dt>
+    <dd>{{ origin }}</dd>
+    <dt><b>Image:</b></dt>
+    <dd><img src="{{ image }}" /></dd>
+</dl>
+
+<h4>Meta data:</h4>
+<dl>
+    {{#metadata}}
+        <dt><b>{{ name }}</b></dt>
+        <dd>{{ value }}</dd>
+    {{/metadata}}
+</dl>

@@ -1,0 +1,18 @@
+{
+  "name": "feedback-notification-app",
+  "version": "1.0.0",
+  "description": "Notification App for Philly Feedback App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alejandro Lopez",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.205.0",
+    "dotenv": "^5.0.1",
+    "firebase": "^4.10.1",
+    "mustache": "^2.3.0",
+    "winston": "^3.0.0-rc1"
+  }
+}

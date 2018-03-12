@@ -1,0 +1,21 @@
+There is a new feedback for the app: {{ pageTitle }}
+
+Details:
+Name:
+{{ name }}
+Email:
+{{ email }}
+Feedback:
+{{ feedback }}
+URL:
+{{ href }}
+Domain:
+{{ origin }}
+Image URL:
+{{ image }}
+
+Meta data:
+{{#metadata}}
+{{ name }}
+{{ value }}
+{{/metadata}}
