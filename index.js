@@ -96,8 +96,8 @@ const params = {
   ],
 };
 
-const HTML_TEMPLATE = require("./html.txt");
-const TEXT_TEMPLATE = require("./text.txt");
+const HTML_TEMPLATE = require("./html_template.txt");
+const TEXT_TEMPLATE = require("./text_template.txt");
 
 function sentErrorMessage(situation, error, kill) {
   // Set the log
