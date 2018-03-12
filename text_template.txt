@@ -1,6 +1,8 @@
 There is a new feedback for the app: {{ pageTitle }}
 
 Details:
+Date Time:
+{{ datetime }}
 Name:
 {{ name }}
 Email:
