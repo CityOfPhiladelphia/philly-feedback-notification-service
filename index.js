@@ -145,11 +145,11 @@ function execMainStuff() {
         params.Message.Body.Text.Data = Mustache.render(TEXT_TEMPLATE, data);
 
         new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise()
-        .then(function(data) {
+        .then(function(email_response) {
           console.log("Cool, everythig is alright");
         })
         .catch(function(error) {
-          sentErrorMessage(`There was an error sending the email for feedback ${data.id}`, error);
+          sentErrorMessage(`There was an error sending the email for feedback ${doc.id}`, error);
         });
 
         firestore.collection('feedbacks').doc(doc.id).set({
