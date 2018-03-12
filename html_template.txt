@@ -7,6 +7,8 @@
 <p>{{ name }}</p>
 <h4>Email:</h4>
 <p>{{ email }}</p>
+<h4>Consent to contact:</h4>
+<p>{{ consentToContact }}</p>
 <h4>Feedback:</h4>
 <p>{{ feedback }}</p>
 <h4>URL:</h4>

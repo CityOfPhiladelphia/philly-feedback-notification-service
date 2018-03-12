@@ -7,6 +7,8 @@ Name:
 {{ name }}
 Email:
 {{ email }}
+Consent to contact:
+{{ consentToContact }}
 Feedback:
 {{ feedback }}
 URL:
