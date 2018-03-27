@@ -219,7 +219,11 @@ function execMainStuff() {
   const storage = Storage();
   const bucket = storage.bucket(process.env.GCLOUD_STORAGE_BUCKET);
 
-  app.post('/feedback', function (req, res, next) {
+  app.get('/', function (req, res, next) {
+    res.status(200).send('Oops, there is nothing here...');
+  })
+
+  app.post('/', function (req, res, next) {
     if (!req.file) {
       saveDataOnFirebase(req, res, next);
       return;
