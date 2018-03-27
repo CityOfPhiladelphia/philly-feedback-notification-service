@@ -187,6 +187,7 @@ function execMainStuff() {
       corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
       error = null;
     }else{
+      logger.info(`${req.header('Origin')} is not allowed`);
       corsOptions = { origin: false }; // disable CORS for this request
       error = new Error('Not allowed by CORS');
     }
