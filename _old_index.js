@@ -49,6 +49,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // Set the region 
+var credentials = new AWS.SharedIniFileCredentials({profile: 'alejandro.lopez'});
+AWS.config.credentials = credentials;
 AWS.config.update({region: 'us-east-1'});
 
 
