@@ -169,12 +169,12 @@ function execMainStuff() {
             execMainStuff();
           }
         });
-      })
+      });
       
     }, error => {
       sentErrorMessage(`Getting un-notified feedbacks`, error);
       execMainStuff();
-    })
+    });
 }
 
 firebaseApp.auth().onAuthStateChanged(function(user) {
