@@ -185,14 +185,15 @@ function execMainStuff() {
   var corsOptionsDelegate = function (req, callback) {
     let corsOptions;
     let error = null;
-    if (whitelist.indexOf(req.header('Origin')) !== -1) {
-      corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
-      error = null;
-    }else{
-      logger.info(`${req.header('Origin')} is not allowed`);
-      corsOptions = { origin: false }; // disable CORS for this request
-      error = new Error('Not allowed by CORS');
-    }
+    corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
+    // if (whitelist.indexOf(req.header('Origin')) !== -1) {
+    //   corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
+    //   error = null;
+    // }else{
+    //   logger.info(`${req.header('Origin')} is not allowed`);
+    //   corsOptions = { origin: false }; // disable CORS for this request
+    //   error = new Error('Not allowed by CORS');
+    // }
     callback(error, corsOptions) // callback expects two parameters: error and options 
   }
 
