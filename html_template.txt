@@ -1,24 +1,24 @@
 <h3>Feedback From: {{ pageTitle }}</h3>
 <br>
-<h5>Date Time:</h5>
+<strong>Date Time:</strong>
 <p>{{ datetime }}</p>
-<h5>Name:</h5>
+<strong>Name:</strong>
 <p>{{ name }}</p>
-<h5>Email:</h5>
+<strong>Email:</strong>
 <p>{{ email }}</p>
-<h5>Consent to contact:</h5>
+<strong>Consent to contact:</strong>
 <p>{{ consentToContact }}</p>
-<h5>Feedback:</h5>
+<strong>Feedback:</strong>
 <p>{{ feedback }}</p>
-<h5>URL:</h5>
+<strong>URL:</strong>
 <p>{{ href }}</p>
-<h5>Domain:</h5>
+<strong>Domain:</strong>
 <p>{{ origin }}</p>
-<h5>Image:</h5>
+<strong>Image:</strong>
 <p><img src="{{ image }}" /></p>
 <br>
 <h4>Metatags Data:</h4>
 {{#metadata}}
-    <h5>{{ name }}</h5>
+    <strong>{{ name }}</strong>
     <p>{{ value }}</p>
 {{/metadata}}
