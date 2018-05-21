@@ -1,6 +1,5 @@
-There is a new feedback for the app: {{ pageTitle }}
+Feedback From: {{ pageTitle }}
 
-Details:
 Date Time:
 {{ datetime }}
 Name:
@@ -18,7 +17,7 @@ Domain:
 Image URL:
 {{ image }}
 
-Meta data:
+Metatags Data:
 {{#metadata}}
 {{ name }}
 {{ value }}
