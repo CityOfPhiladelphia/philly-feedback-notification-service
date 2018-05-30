@@ -71,14 +71,12 @@ if (!firebase.apps.length) {
 }
 
 const firebaseDatabase = firebaseApp.firestore();
+const emails = String(process.env.EMAILS).split(',');
 
 // Email config
 const params = {
   Destination: { /* required */
-    ToAddresses: [
-      'alejandro.lopez@phila.gov',
-      /* more To email addresses */
-    ]
+    ToAddresses: emails
   },
   Message: { /* required */
     Body: { /* required */
@@ -94,9 +92,7 @@ const params = {
     }
   },
   Source: 'alejandro.lopez@phila.gov', /* required */
-  ReplyToAddresses: [
-      'alejandro.lopez@phila.gov',
-  ],
+  ReplyToAddresses: emails,
 };
 
 const HTML_TEMPLATE = require("./html_template.txt");
