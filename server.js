@@ -74,7 +74,7 @@ const firebaseDatabase = firebaseApp.firestore();
 const emails = String(process.env.EMAILS).split(',');
 
 // Info emails
-logger.info(emails);
+// logger.info(emails);
 
 // Email config
 const params = {
