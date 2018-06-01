@@ -78,7 +78,6 @@ firebaseDatabase.collection('emails')
   snapshot.forEach(doc => {
     $emails.push(doc.data().email);
   });
-  logger.info($emails);
 });
 
 // Email config
@@ -149,6 +148,7 @@ function saveDataOnFirebase(req, res, next, fileURL) {
   try {
     firebaseDatabase.collection("feedbacks").doc(`${now}`).set(dataToSend)
     .then(function() {
+      logger.info(`${Date().toISOString()}: Sending Email to ${$emails.join(',')}`);
 
       params.Destination.ToAddresses = $emails;
       params.ReplyToAddresses = $emails;
