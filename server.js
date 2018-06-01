@@ -71,15 +71,19 @@ if (!firebase.apps.length) {
 }
 
 const firebaseDatabase = firebaseApp.firestore();
-const emails = String(process.env.EMAILS).split(',');
-
-// Info emails
-// logger.info(emails);
+var $emails = String(process.env.EMAILS).split(',');
+firebaseDatabase.collection('emails')
+.onSnapshot(snapshot => {
+  $emails = new Array();
+  snapshot.forEach(doc => {
+    $emails.push(doc.data().email);
+  });
+});
 
 // Email config
 const params = {
   Destination: { /* required */
-    ToAddresses: emails
+    ToAddresses: []
   },
   Message: { /* required */
     Body: { /* required */
@@ -95,7 +99,7 @@ const params = {
     }
   },
   Source: 'alejandro.lopez@phila.gov', /* required */
-  ReplyToAddresses: emails,
+  ReplyToAddresses: [],
 };
 
 const HTML_TEMPLATE = require("./html_template.txt");
@@ -144,6 +148,10 @@ function saveDataOnFirebase(req, res, next, fileURL) {
   try {
     firebaseDatabase.collection("feedbacks").doc(`${now}`).set(dataToSend)
     .then(function() {
+
+      params.Destination.ToAddresses = $emails;
+      params.ReplyToAddresses = $emails;
+
       // SEND EMAIL
       params.Message.Subject.Data = 'We\'ve got a new feedback!';
       params.Message.Body.Html.Data = Mustache.render(HTML_TEMPLATE, dataToSend);
@@ -173,13 +181,13 @@ function saveDataOnFirebase(req, res, next, fileURL) {
 function execMainStuff() {
   let whitelist = new Array();
 
-  firebaseDatabase.collection('access-control')
-    .onSnapshot(snapshot => {
-      whitelist = new Array();
-      snapshot.forEach(doc => {
-          whitelist.push(doc.data().origin);
-      });
-    })
+  // firebaseDatabase.collection('access-control')
+  //   .onSnapshot(snapshot => {
+  //     whitelist = new Array();
+  //     snapshot.forEach(doc => {
+  //         whitelist.push(doc.data().origin);
+  //     });
+  //   });
 
   var corsOptionsDelegate = function (req, callback) {
     let corsOptions;
