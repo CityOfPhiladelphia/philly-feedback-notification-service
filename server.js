@@ -78,6 +78,7 @@ firebaseDatabase.collection('emails')
   snapshot.forEach(doc => {
     $emails.push(doc.data().email);
   });
+  logger.info($emails);
 });
 
 // Email config
